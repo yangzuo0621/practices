@@ -27,3 +27,18 @@
                        (reverse (all-primes (int (Math/sqrt target))))))
     )
 )
+
+;; https://projecteuler.net/problem=4
+;; Largest Palindrome Product
+(defn is-palindrome?
+  [n]
+  (= (seq (str n)) (reverse (seq (str n)))))
+
+(defn largest-palindrome-product
+  "largest palindrome made from the product of two 3-digit numbers: 906609"
+  []
+  (let [products (for [x (range 100 1000)
+                       y (range 100 1000)]
+                   (* x y))]
+    (first (drop-while #(not (is-palindrome? %)) (reverse (sort products)))))
+)
