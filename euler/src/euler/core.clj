@@ -69,3 +69,15 @@
        (reduce + (map power-of-two (range 1 101))))
   )
 )
+
+;; https://projecteuler.net/problem=7
+;; 10001st Prime
+(defn prime? [n]
+  (every? #(not= 0 (mod n %)) (range 2 (inc (int (Math/sqrt n))))))
+
+(defn _10001st-prime
+  "10001st prime: 104743"
+  []
+  (first (drop 10000 (filter prime? (iterate inc 2))))
+  ;;(nth (filter prime? (range 2 1000000)) 10000))
+)
