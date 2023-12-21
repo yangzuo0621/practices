@@ -58,3 +58,14 @@
     (range 11 (inc 20))
   )
 )
+
+;; https://projecteuler.net/problem=6
+;; Sum Square Difference
+(defn sum-of-square-difference
+  "difference between the sum of the squares of the first one hundred natural numbers and the square of the sum: 25164150"
+  []
+  (let [power-of-two (fn [n] (reduce * (repeat 2 n)))]
+    (- (power-of-two (reduce + (range 1 101)))
+       (reduce + (map power-of-two (range 1 101))))
+  )
+)
