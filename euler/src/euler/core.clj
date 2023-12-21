@@ -42,3 +42,19 @@
                    (* x y))]
     (first (drop-while #(not (is-palindrome? %)) (reverse (sort products)))))
 )
+
+;; https://projecteuler.net/problem=5
+;; Smallest Multiple
+(defn smallest-multiple
+  "smallest positive number that is evenly divisible by all of the numbers from 1 to 20: 232792560"
+  []
+  (reduce 
+    (fn [acc x]
+      (if (= 0 (mod acc x))
+        acc
+        (* acc (denominator (/ acc x))))
+    )
+    2520 ;; smallest number that can be divided by each of the numbers from 1 to 10 without any remainder
+    (range 11 (inc 20))
+  )
+)
