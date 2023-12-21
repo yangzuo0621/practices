@@ -1,8 +1,14 @@
 (ns euler.core)
 
+;; https://projecteuler.net/problem=1
+;; Multiples of 3 and 5
+(defn sum-of-multiples
+  "sum of all the multiples of 3 or 5 below 1000: 233168"
+  []
+  (reduce + (filter #(or (= 0 (mod % 3)) (= 0 (mod % 5))) (range 1 1000))))
+
 ;; https://projecteuler.net/problem=3
 ;; Largest Prime Factor
-
 (defn all-primes [n]
   (let [scope (range 2 (int (Math/sqrt n)))
         coll (range 2 n)]
