@@ -130,3 +130,21 @@
     (apply max (for [item (reduce into [] (map matrix [horizontal vertical diagonal diagonal2]))] (reduce #(* %1 (Integer/parseInt %2)) 1 item)))
   )
 )
+
+
+;; https://projecteuler.net/problem=12
+;; Highly Divisible Triangular Number
+(def triangle-numbers
+  (lazy-seq
+    (cons 1 (map + (iterate inc 2) triangle-numbers))))
+
+(defn factors
+  [n]
+  (let [sqrt (int (Math/sqrt n))]
+    (reduce into [] (for [i (range 1 (inc sqrt)) :when (= 0 (mod n i))] [i (/ n i)]))))
+
+(defn highly-divisible-triangular-number
+  "value of the first triangle number to have over five hundred divisors: 76576500"
+  []
+  (first (drop-while #(<= (count (factors %)) 500) triangle-numbers))
+)
